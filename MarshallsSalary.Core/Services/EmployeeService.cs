@@ -92,7 +92,6 @@ namespace MarshallsSalary.Core.Services
 
         public EmployeeDTO PostEmployeeSalary(EmployeeDTO employeeDTO)
         {
-            if (_unitOfWork.EmployeeSalaries.GetAll().Any(x => x.EmployeeCode == employeeDTO.EmployeeCode || (x.EmployeeName.ToLower() == employeeDTO.EmployeeName.ToLower() && x.EmployeeSurname.ToLower() == employeeDTO.EmployeeSurname.ToLower()))) return null;
             foreach (var salaryDTO in employeeDTO.Salaries)
             {
                 EmployeeSalary employeeSalary = _unitOfWork.EmployeeSalaries
@@ -116,7 +115,7 @@ namespace MarshallsSalary.Core.Services
                     employeeSalary.CompensatioBonus = salaryDTO.CompensatioBonus;
                     employeeSalary.Contributions = salaryDTO.Contributions;
                     employeeSalary.ProductionBonus = salaryDTO.ProductionBonus;
-                    employeeSalary.OfficeId = salaryDTO.Office.OfficeId;
+                    employeeSalary.OfficeId = employeeDTO.Office.OfficeId;
                     _unitOfWork.EmployeeSalaries.Set(employeeSalary);
                 }
                 else //CREATE mode
@@ -139,7 +138,7 @@ namespace MarshallsSalary.Core.Services
                         ProductionBonus = salaryDTO.ProductionBonus,
                         Year = salaryDTO.Year,
                         Month = salaryDTO.Month,
-                        OfficeId = salaryDTO.Office.OfficeId,
+                        OfficeId = employeeDTO.Office.OfficeId,
                     };
                     _unitOfWork.EmployeeSalaries.Add(employeeSalary);
                 }

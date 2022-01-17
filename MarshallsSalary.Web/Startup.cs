@@ -36,8 +36,7 @@ namespace MarshallsSalary.Web
                 builderCors
                        .AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .AllowCredentials();
+                       .AllowAnyHeader();
             }));
 
             services.AddDbContext<DataContext>(opt =>
@@ -46,6 +45,9 @@ namespace MarshallsSalary.Web
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IOfficeService, OfficeService>();
+            services.AddScoped<IPositionService, PositionService>();
+            services.AddScoped<IDivisionService, DivisionService>();
 
             services.AddControllers();
 
@@ -74,6 +76,8 @@ namespace MarshallsSalary.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dbContext)
         {
+            app.UseCors("CorsPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -97,7 +101,7 @@ namespace MarshallsSalary.Web
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "CurierNow external API V1");
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Salary API V1");
                 s.RoutePrefix = string.Empty;
             });
 

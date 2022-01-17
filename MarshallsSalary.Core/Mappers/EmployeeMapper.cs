@@ -33,7 +33,7 @@ namespace MarshallsSalary.Core.Mappers
                     ProductionBonus = salaryDTO.ProductionBonus,
                     Year = salaryDTO.Year,
                     Month = salaryDTO.Month,
-                    OfficeId = salaryDTO.Office.OfficeId,
+                    OfficeId = employeeDTO.Office.OfficeId,
                 };
                 result.Add(userSalary);
             }
@@ -52,6 +52,11 @@ namespace MarshallsSalary.Core.Mappers
                     BeginDate = x.BeginDate, 
                     Birthday = x.Birthday,
                     Grade = x.Grade,
+                    Office = new OfficeDTO()
+                    {
+                        OfficeId = x.Office.OfficeId,
+                        Name = x.Office.Name
+                    },
                     Division = new DivisionDTO() 
                     {
                         DivisionId = x.Division.DivisionId,
@@ -77,12 +82,7 @@ namespace MarshallsSalary.Core.Mappers
                                         Contributions = x.Contributions,
                                         ProductionBonus = x.ProductionBonus,
                                         Year = x.Year,
-                                        Month = x.Month,
-                                        Office = new OfficeDTO() 
-                                        {
-                                            OfficeId = x.Office.OfficeId,
-                                            Name = x.Office.Name
-                                        }
+                                        Month = x.Month
                                     }).ToList();
             }
             return employees;

@@ -16,9 +16,11 @@ namespace MarshallsSalary.Core.DTO
         [Required]
         public string EmployeeSurname { get; set; }
         [Required]
-        public DivisionDTO Division { get; set; }
+        public OfficeDTO Office { get; set; }
         [Required]
         public PositionDTO Position { get; set; }
+        [Required]
+        public DivisionDTO Division { get; set; }
         [Required]
         public int Grade { get; set; }
         [Required]
@@ -40,6 +42,12 @@ namespace MarshallsSalary.Core.DTO
     public class PositionDTO
     {
         public int PositionId { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class OfficeDTO
+    {
+        public int OfficeId { get; set; }
         public string Name { get; set; }
     }
 

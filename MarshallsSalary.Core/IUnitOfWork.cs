@@ -8,6 +8,9 @@ namespace MarshallsSalary.Core
     public interface IUnitOfWork : IDisposable
     {
         IEmployeeSalaryRepository EmployeeSalaries { get; }
+        IOfficeRepository Offices { get; }
+        IDivisionRepository Divisions { get; }
+        IPositionRepository Positions { get; }
         void Complete();
     }
 }
