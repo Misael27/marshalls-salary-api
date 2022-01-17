@@ -1,9 +1,0 @@
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\bin\Debug\netcoreapp3.1\MarshallsSalary.Core.deps.json
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\bin\Debug\netcoreapp3.1\MarshallsSalary.Core.dll
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\obj\Debug\netcoreapp3.1\MarshallsSalary.Core.AssemblyInfoInputs.cache
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\obj\Debug\netcoreapp3.1\MarshallsSalary.Core.AssemblyInfo.cs
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\bin\Debug\netcoreapp3.1\MarshallsSalary.Core.pdb
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\obj\Debug\netcoreapp3.1\MarshallsSalary.Core.csproj.CoreCompileInputs.cache
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\obj\Debug\netcoreapp3.1\MarshallsSalary.Core.dll
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\obj\Debug\netcoreapp3.1\MarshallsSalary.Core.pdb
-D:\Users\mjpol\Documents\projects\test\.netcore\marshalls-salary-api\marshalls-salary-api\MarshallsSalary.Core\obj\Debug\netcoreapp3.1\MarshallsSalary.Core.csprojAssemblyReference.cache
