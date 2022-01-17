@@ -16,7 +16,7 @@ namespace MarshallsSalary.Core.Services
         EmployeeDTO GetEmployeeByName(FilterNameDTO filterDTO);
         EmployeeDTO PostEmployeeSalary(EmployeeDTO employeeDTO);
         List<EmployeeSalaryDTO> GetEmployeeList(FilterOptionDTO filterDTO);
-        EmployeeDTO getSalaryAverage(FilterCodeDTO filterCodeDTO);
+        BonusDTO getSalaryAverage(FilterCodeDTO filterCodeDTO);
     }
 
     public class EmployeeService : IEmployeeService
@@ -190,10 +190,13 @@ namespace MarshallsSalary.Core.Services
             return result;
         }
 
-        public EmployeeDTO getSalaryAverage(FilterCodeDTO filterCodeDTO) 
+        public BonusDTO getSalaryAverage(FilterCodeDTO filterCodeDTO) 
         {
+            //result structure
+            var result = new BonusDTO();
+            result.Salaries = new List<EmployeeSalaryDTO>();
             //get last 3 salaries
-            List<EmployeeSalary> employeeSalaries = _unitOfWork.EmployeeSalaries
+            List <EmployeeSalary> employeeSalaries = _unitOfWork.EmployeeSalaries
                                             .Find(x => x.EmployeeCode == filterCodeDTO.EmployeeCode)
                                             .OrderByDescending(x => x.Year)
                                             .ThenByDescending(x => x.Month)
@@ -209,20 +212,35 @@ namespace MarshallsSalary.Core.Services
             foreach (var salary in employeeSalaries)
             {
                 if (lastMont == 0
-                    || lastMont - 1 == salary.Month && lastYear == salary.Year
-                    || lastMont == 1 && salary.Month == 12 && lastYear - 1 == salary.Year) 
+                    || (lastMont - 1 == salary.Month && lastYear == salary.Year)
+                    || (lastMont == 1 && salary.Month == 12 && lastYear - 1 == salary.Year)) 
                 {
                     lastMont = salary.Month;
                     lastYear = salary.Year;
                     sum = getTotalSalary(salary.BaseSalary, salary.ProductionBonus, salary.CompensatioBonus, salary.Commission, salary.Contributions);
                     count++;
+
+                    result.Salaries.Add(new EmployeeSalaryDTO()
+                    {
+                        Id = salary.Id,
+                        EmployeeCode = salary.EmployeeCode,
+                        EmployeeFullName = salary.EmployeeName + " " + salary.EmployeeSurname,
+                        Division = salary.Division.Name,
+                        Position = salary.Position.Name,
+                        BeginDate = salary.BeginDate,
+                        Birthday = salary.Birthday,
+                        IdentificationNumber = salary.IdentificationNumber,
+                        Year = salary.Year,
+                        Month = salary.Month,
+                        TotalSalary = getTotalSalary(salary.BaseSalary, salary.ProductionBonus, salary.CompensatioBonus, salary.Commission, salary.Contributions)
+                    });
+
                 }
             }
             if (count > 0) 
             {
                 average = sum / count;
             }
-            var result = EmployeeMapper.ToDto(employeeSalaries).FirstOrDefault();
             result.Bonus = average;
             return result;
         }
