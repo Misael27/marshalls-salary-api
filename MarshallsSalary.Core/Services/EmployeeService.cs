@@ -238,13 +238,13 @@ namespace MarshallsSalary.Core.Services
             if (filterEmployee == null) return x => x.EmployeeName != null;
             //create predicate
             if (filterDTO.FilterOption == 1) //same Office and Grade
-                return x => x.Id != filterDTO.Id && x.OfficeId == filterEmployee.OfficeId && x.Grade == filterEmployee.Grade;
+                return x => x.OfficeId == filterEmployee.OfficeId && x.Grade == filterEmployee.Grade;
             if (filterDTO.FilterOption == 2) //same Grade
-                return x => x.Id != filterDTO.Id && x.Grade == filterEmployee.Grade;
+                return x => x.Grade == filterEmployee.Grade;
             if (filterDTO.FilterOption == 3) //same Position and Grade
-                return x => x.Id != filterDTO.Id && x.PositionId == filterEmployee.PositionId && x.Grade == filterEmployee.Grade;
+                return x => x.PositionId == filterEmployee.PositionId && x.Grade == filterEmployee.Grade;
             if (filterDTO.FilterOption == 4) //same Grade
-                return x => x.Id != filterDTO.Id && x.Grade == filterEmployee.Grade;
+                return x => x.Grade == filterEmployee.Grade;
             else
                 return x => x.EmployeeName != null;
         }
